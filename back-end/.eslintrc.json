@@ -1,5 +1,8 @@
 {
-  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
   "extends": [
     "prettier",
     "airbnb",
@@ -7,38 +10,24 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jest/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "react",
-    "react-hooks",
-    "jest",
-    "eslint-plugin-import-helpers",
-    "@typescript-eslint"
-  ],
-  "env": {
-    "browser": true,
-    "amd": true,
-    "node": true,
-    "jest": true
-  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2020,
-    "project": "./tsconfig.json",
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "eslint-plugin-import-helpers",
+    "@typescript-eslint"
+  ],
   "rules": {
     "linebreak-style": "off",
     "prefer-const": "off",
@@ -48,7 +37,14 @@
     "react-hooks/exhaustive-deps": "off",
     "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "function-declaration",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "import-helpers/order-imports": [
       "error",
       {
@@ -56,7 +52,7 @@
         "groups": [
           ["/^react/", "/^redux/", "/react/"],
           "module",
-          ["/^Services/", "/^Contexts/", "/^Utils/"],
+          ["/^Services/", "/^Providers/", "/^Utils/"],
           "/^Routes/",
           ["/^Components/", "/^Pages/", "/^Containers/"],
           ["/^pages/", "/^components/"],
